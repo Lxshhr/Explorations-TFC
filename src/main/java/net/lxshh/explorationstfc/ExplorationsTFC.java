@@ -24,7 +24,7 @@ public class ExplorationsTFC
 
         ModItems.ITEMS.register(modEventBus);
         ModBlocks.BLOCKS.register(modEventBus);
-//        ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
+        ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
         ModCreativeTab.CREATIVE_MODE_TABS.register(modEventBus);
     }
 }

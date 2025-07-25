@@ -7,12 +7,12 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-public class StrawPuppetItem extends Item {
+public class CrackedDolItem extends Item {
     private static final Component[] MESSAGES = new Component[] {
             Component.literal("You feel uneasy holding this...")
     };
 
-    public StrawPuppetItem(Properties pProperties) {
+    public CrackedDolItem(Properties pProperties) {
         super(pProperties);
     }
 

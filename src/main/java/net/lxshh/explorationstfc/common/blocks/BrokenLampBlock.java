@@ -24,13 +24,13 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class EmptyLampBlock extends Block {
+public class BrokenLampBlock extends Block {
     private static final BooleanProperty HANGING = BlockStateProperties.HANGING;
 
     private static final VoxelShape SHAPE = Shapes.or(Block.box(5.0D, 0.0D, 5.0D, 11.0D, 7.0D, 11.0D), Block.box(6.0D, 7.0D, 6.0D, 10.0D, 9.0D, 10.0D));
     private static final VoxelShape HANGING_SHAPE = Shapes.or(Block.box(5.0D, 1.0D, 5.0D, 11.0D, 8.0D, 11.0D), Block.box(6.0D, 8.0D, 6.0D, 10.0D, 10.0D, 10.0D));
 
-    public EmptyLampBlock(Properties pProperties) {
+    public BrokenLampBlock(Properties pProperties) {
         super(pProperties);
         registerDefaultState(getStateDefinition().any().setValue(HANGING, false));
     }
@@ -61,16 +61,19 @@ public class EmptyLampBlock extends Block {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         return pState.getValue(HANGING) ? HANGING_SHAPE : SHAPE;
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pPos, BlockPos pNeighborPos) {
         return getConnectedDirection(pState).getOpposite() == pDirection && !pState.canSurvive(pLevel, pPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(pState, pDirection, pNeighborState, pLevel, pPos, pNeighborPos);
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
         Direction direction = getConnectedDirection(pState).getOpposite();
         return Block.canSupportCenter(pLevel, pPos.relative(direction), direction.getOpposite());
@@ -87,6 +90,7 @@ public class EmptyLampBlock extends Block {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void onProjectileHit(Level pLevel, BlockState pState, BlockHitResult pHit, Projectile pProjectile) {
         if(!pLevel.isClientSide()) {
             pLevel.destroyBlock(pHit.getBlockPos(), true, pProjectile);

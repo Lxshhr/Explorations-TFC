@@ -1,17 +1,23 @@
 package net.lxshh.explorationstfc.common.blocks;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
 
-public class LootVesselBlock extends Block {
-    private static final VoxelShape SHAPE = Block.box(5, 0, 5, 12, 8, 12);
+import java.util.List;
 
-    public LootVesselBlock(Properties pProperties) {
+public class GobletBlock extends Block {
+    private static final VoxelShape SHAPE = box(6, 0, 6, 11, 12, 11);
+
+    public GobletBlock(Properties pProperties) {
         super(pProperties);
     }
 
@@ -23,5 +29,10 @@ public class LootVesselBlock extends Block {
     @Override
     public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
         return false;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+        pTooltip.add(Component.literal("An empty goblet... for now"));
     }
 }
